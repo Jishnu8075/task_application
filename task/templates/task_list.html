@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <table class="table table-border-black">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tasks %}
+                <tr>
+                    <td>{{ t.title }}</td>
+                    <td>{{ t.description }}</td>
+                    <td>{{ t.priority }}</td>
+                    <td>{{ t.status }}</td>
+                    <td>
+                        <a href="{% url 'task-update' t.id %}">Edit</a>&nbsp;&nbsp;
+                        <a href="{% url 'task-delete' t.id %}">Delete</a>&nbsp;&nbsp;
+                        <a href="{% url 'task-detail' t.id %}">View</a>&nbsp;&nbsp;
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <a href="{% url 'task-add' %}">Add</a>&nbsp;&nbsp;
+            <a href="">Filter</a>&nbsp;&nbsp;
+            <a href="{% url 'login' %}">Exit</a>
+        </div>
+    </div>
+</body>
+</html>
